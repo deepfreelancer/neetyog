@@ -1,0 +1,41 @@
+/*====== ICONS CSS ======*/
+.icons::before{
+	content: ' ';
+    width: 2rem;
+    display: inline-block;
+    height: 2rem;
+    vertical-align: middle;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: invert(1);
+}
+.icon-location::before{
+    background-image: url(../../public/images/icons/map-marked-alt-solid.svg);
+}
+.icon-call::before{
+    background-image: url(../../public/images/icons/phone-square-alt-solid.svg);
+}
+.icon-email::before{
+    background-image: url(../../public/images/icons/envelope-open-solid.svg);
+}
+.icon-paper-plane-regular::before{
+	background-image: url(../../public/images/icons/paper-plane-regular.svg);
+}
+
+/*--FOOTER ICONS--*/
+.footer-icons::before{
+    content: '';
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: invert(1);
+}
+.icon-whatsapp::before{
+	background-image: url(../../public/images/icons/whatsapp-brands.svg);
+}
