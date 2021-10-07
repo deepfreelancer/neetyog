@@ -47,7 +47,7 @@
                 <textarea name="message" class="form-control" placeholder="Enter Any Message"></textarea>
               </div>
             </div>
-            <input name="submit" type="submit" value="Send a Mail" class="btn btn-second" /> 
+            <input name="submit" type="submit" id="contact-form-btn" value="Send a Mail" class="btn btn-second" /> 
           </form>
         </div>
       </div>
@@ -94,58 +94,51 @@
 </section>
 <!-- <button class="btn-demo btn" onclick="function_alert();">CLICK</button> -->
 
-<?php 
-if(isset($_POST['submit'])){
-    $to = "info@neetyog.com"; // this is your Email address
-    $first_name = $_POST['first_name'];
-    $from = $_POST['email']; // this is the sender's Email address
-    $mobile = $_POST['mobile'];
-    $subject = "Form submission";
-    $subject2 = "Copy of your form submission";
-    $message = $first_name . " " . $mobile . " wrote the following:" . "\n\n" . $_POST['message'];
-    $message2 = "Here is a copy of your message " . $first_name . "\n\n" . $_POST['message'];
-
-    $headers = "From:" . $from;
-    $headers2 = "From:" . $to;
-    mail($to,$subject,$message,$headers);
-    mail($from,$subject2,$message2,$headers2); // sends a copy of the message to the sender
-    // echo 'alert("Mail Sent. Thank you " '+ $first_name +' ", we will contact you shortly.")';
-   // echo "<script language= 'JavaScript'>alert('Mail Sent. Thank you $first_name , we will contact you shortly. ');</script>";
-    echo "<script language= 'JavaScript'>myFn();</script>";
-    //header('Location: thank_you.php');
-    }
-?>  
-<!-- <button class="preview" id="ShowBtn">Preview</button> -->
+  
+<!-- <button class="preview" id="ShowBtn">Preview</button>
 <script>
-// document.getElementById('ShowBtn').onclick = function(){
-//   swal("Good job!", "You clicked the button!", "success");
-// };
+document.getElementById('ShowBtn').onclick = function(){
+  swal("Good job!", "You clicked the button!", "success");
+};
 
-</script>
+</script> -->
+<script src="public/js/jquery-3.3.0.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.js"></script> -->
+<script src="public/js/sweetalert.min.js"></script>
 <script type="text/javascript">
 
-// $(document).ready(function(){
-//   $('#contact-form').on('submit',function(e) {  //Don't foget to change the id form
-//   $.ajax({
-//       url:'contact.php', //===PHP file name====
-//       data:$(this).serialize(),
-//       type:'POST',
-//       success:function(data){
-//         console.log(data);
-//         //Success Message == 'Title', 'Message body', Last one leave as it is
-//       swal("¡Success!", "Message sent!", "success");
-//       },
-//       error:function(data){
-//         //Error Message == 'Title', 'Message body', Last one leave as it is
-//       swal("Oops...", "Something went wrong :(", "error");
-//       }
-//     });
-//     e.preventDefault(); //This is to Avoid Page Refresh and Fire the Event "Click"
-//   });
-// });
+$(document).ready(function(){
+  $('#contact-form').on('submit',function(e) {  //Don't foget to change the id form
+  $.ajax({
+      url:'secure_email_code.php', //===PHP file name====
+      data:$(this).serialize(),
+      type:'POST',
+     // var first_name = 'first_name',
+      success:function(data){
+        console.log(data);
+        //Success Message == 'Title', 'Message body', Last one leave as it is
+      swal({
+          'title':'Mail Sent. Thank you ',
+          'html':'true',
+          'text': 'we will contact you shortly.',
+          'icon': 'success'
+        }).then(function(){ 
+            location.reload();
+          });
+      },
+      error:function(data){
+        //Error Message == 'Title', 'Message body', Last one leave as it is
+      swal("Oops...", "Something went wrong :(", "error");
+      }
+    });
+    e.preventDefault(); //This is to Avoid Page Refresh and Fire the Event "Click"
+  });
+ $('#contact-form').on('submit',function() {
+    $('#contact-form-btn').value ="Sending..";
+ });
+
+});
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
-<script src="public/js/sweetalert.min.js"></script>    
 <link rel='stylesheet' href='public/css/sweetalert.min.css'></link>  
 
 
